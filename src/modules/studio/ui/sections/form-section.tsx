@@ -76,7 +76,7 @@ const FormSectionLoading = () => {
           <Skeleton className="h-7 w-32" />
           <Skeleton className="h-4 w-40" />
         </div>
-        <Skeleton className="h-19w-24" />
+        <Skeleton className="h-9 w-24" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
@@ -95,7 +95,7 @@ const FormSectionLoading = () => {
           </div>
           <div className="space-y-2">
             <Skeleton className="w-20 h-5" />
-            <Skeleton className="h-[220px] w-full" />
+            <Skeleton className="h-10 w-full" />
           </div>
         </div>
 
@@ -235,7 +235,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionprops) => {
             <div className="flex items-center gap-x-2">
               <Button
                 type="submit"
-                disabled={update.isPending || form.formState.isDirty}
+                disabled={update.isPending || !form.formState.isDirty}
               >
                 Save
               </Button>
