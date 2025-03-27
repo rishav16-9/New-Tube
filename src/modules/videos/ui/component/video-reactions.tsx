@@ -24,7 +24,6 @@ export const VideoReactions = ({
   const utils = trpc.useUtils();
   const like = trpc.videoReactions.like.useMutation({
     onSuccess: () => {
-      console.log("Liked");
       utils.videos.getOne.invalidate({ id: videoId });
     },
     onError: (error) => {
