@@ -33,7 +33,7 @@ export const CommentReactionsRouter = createTRPCRouter({
           .returning();
         return deletedViewerReaction;
       }
-      const [createdVideoReaction] = await db
+      const [createdCommentReaction] = await db
         .insert(commentReactions)
         .values({
           userId,
@@ -47,7 +47,7 @@ export const CommentReactionsRouter = createTRPCRouter({
           },
         })
         .returning();
-      return createdVideoReaction;
+      return createdCommentReaction;
     }),
 
   dislike: protectedProcedure
@@ -79,7 +79,7 @@ export const CommentReactionsRouter = createTRPCRouter({
         return deletedViewerReaction;
       }
 
-      const [createdVideoReaction] = await db
+      const [createdCommentReaction] = await db
         .insert(commentReactions)
         .values({
           userId,
@@ -93,6 +93,6 @@ export const CommentReactionsRouter = createTRPCRouter({
           },
         })
         .returning();
-      return createdVideoReaction;
+      return createdCommentReaction;
     }),
 });

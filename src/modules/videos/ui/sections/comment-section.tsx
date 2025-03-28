@@ -51,7 +51,7 @@ export const CommentSectionSuspense = ({ videoId }: commentSectionProps) => {
           {comments.pages
             .flatMap((page) => page.items)
             .map((comment) => (
-              <CommentItem key={comment.commentId} comment={comment} />
+              <CommentItem key={comment.id} comment={comment} />
             ))}
           <InfinteScroll
             isManual
