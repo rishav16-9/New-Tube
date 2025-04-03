@@ -18,8 +18,8 @@ const items = [
     icon: HomeIcon,
   },
   {
-    title: "Subscription",
-    url: "/feed/subscription",
+    title: "Subscriptions",
+    url: "/feed/subscribed",
     icon: PlaySquareIcon,
     auth: true,
   },

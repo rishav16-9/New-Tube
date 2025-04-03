@@ -5,6 +5,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { APP_URL } from "@/constants";
 import {
   ListPlusIcon,
   MoreVerticalIcon,
@@ -19,11 +20,13 @@ interface VideoMenyProps {
   onRemove?: () => void;
 }
 
-export const VideoMenu = ({ videoId, variant, onRemove }: VideoMenyProps) => {
+export const VideoMenu = ({
+  videoId,
+  variant = "ghost",
+  onRemove,
+}: VideoMenyProps) => {
   const onShare = () => {
-    const fullUrl = `${
-      process.env.VERCEL_URL || "https://localhost:3000"
-    }/videos/${videoId}`;
+    const fullUrl = `${APP_URL}/videos/${videoId}`;
     navigator.clipboard.writeText(fullUrl);
     toast.success("Link copied successfully");
   };

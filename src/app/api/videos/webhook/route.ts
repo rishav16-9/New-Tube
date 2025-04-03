@@ -52,7 +52,7 @@ export async function POST(request: Request) {
           muxAssetId: data.id,
           muxStatus: data.status,
         })
-        .where(eq(videos.muxUploaodId, data.upload_id));
+        .where(eq(videos.muxUploadId, data.upload_id));
       break;
     }
 
@@ -92,7 +92,7 @@ export async function POST(request: Request) {
           previewKey,
           duration,
         })
-        .where(eq(videos.muxUploaodId, data.upload_id));
+        .where(eq(videos.muxUploadId, data.upload_id));
       break;
     }
     case "video.asset.errored": {
@@ -105,7 +105,7 @@ export async function POST(request: Request) {
         .set({
           muxStatus: data.status,
         })
-        .where(eq(videos.muxUploaodId, data.upload_id));
+        .where(eq(videos.muxUploadId, data.upload_id));
       break;
     }
 
@@ -114,7 +114,7 @@ export async function POST(request: Request) {
       if (!data.upload_id) {
         return new Response("Missing upload ID", { status: 400 });
       }
-      await db.delete(videos).where(eq(videos.muxUploaodId, data.upload_id));
+      await db.delete(videos).where(eq(videos.muxUploadId, data.upload_id));
       break;
     }
 

@@ -70,7 +70,7 @@ export const videos = pgTable("videos", {
   description: text("description"),
   muxStatus: text("mux_status"),
   muxAssetId: text("mux_asset_id").unique(),
-  muxUploaodId: text("mux_upload_id").unique(),
+  muxUploadId: text("mux_upload_id").unique(),
   muxPlaybackId: text("mux_playback_id").unique(),
   muxTrackId: text("mux_track_id").unique(),
   muxtrackStatus: text("mux_track_status"),

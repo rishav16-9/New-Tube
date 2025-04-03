@@ -6,7 +6,7 @@ import { CommentItem } from "@/modules/comments/ui/components/comment-item";
 import { trpc } from "@/trpc/client";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { InfinteScroll } from "@/components/infinite-scroll";
+import { InfiniteScroll } from "@/components/infinite-scroll";
 import { Loader2Icon } from "lucide-react";
 
 interface commentSectionProps {
@@ -53,11 +53,11 @@ export const CommentSectionSuspense = ({ videoId }: commentSectionProps) => {
             .map((comment) => (
               <CommentItem key={comment.id} comment={comment} />
             ))}
-          <InfinteScroll
+          <InfiniteScroll
             isManual
             hasNextPage={query.hasNextPage}
             isFetchingNextPage={query.isFetchingNextPage}
-            fetchingNextPage={query.fetchNextPage}
+            fetchNextPage={query.fetchNextPage}
           />
         </div>
       </div>

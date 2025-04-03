@@ -53,6 +53,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { APP_URL } from "@/constants";
 
 interface FormSectionprops {
   videoId: string;
@@ -131,12 +132,11 @@ const FormSectionSuspense = ({ videoId }: FormSectionprops) => {
   const router = useRouter();
   const utils = trpc.useUtils();
   const [video] = trpc.studio.getOne.useSuspenseQuery({ id: videoId });
-  const [categories] = trpc.category.getMany.useSuspenseQuery();
+  const [categories] = trpc.categories.getMany.useSuspenseQuery();
   const [isCopied, setIsCopied] = useState(false);
   const [openThumbnailModal, setOpenThumbnailModal] = useState(false);
   const [openGenerateThumbnailModal, setOpenGenerateThumbnailModal] =
     useState(false);
-
   const update = trpc.videos.update.useMutation({
     onSuccess: () => {
       utils.studio.getMany.invalidate();
@@ -192,6 +192,17 @@ const FormSectionSuspense = ({ videoId }: FormSectionprops) => {
     },
   });
 
+  const revalidate = trpc.videos.revalidate.useMutation({
+    onSuccess: () => {
+      utils.studio.getMany.invalidate();
+      utils.studio.getOne.invalidate({ id: videoId });
+      toast.success("Video revalidated");
+    },
+    onError: () => {
+      toast.error("Something went wrong");
+    },
+  });
+
   const form = useForm<z.infer<typeof videoUpdateSchema>>({
     resolver: zodResolver(videoUpdateSchema),
     defaultValues: video,
@@ -201,9 +212,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionprops) => {
     update.mutate(data);
   };
 
-  const fullURL = `${
-    process.env.VERCEL_URL || "https://localhost:3000"
-  }/videos/${videoId}`;
+  const fullURL = `${APP_URL}/videos/${videoId}`;
 
   const onCopy = async () => {
     await navigator.clipboard.writeText(fullURL);
@@ -245,8 +254,16 @@ const FormSectionSuspense = ({ videoId }: FormSectionprops) => {
                     <MoreVerticalIcon />
                   </Button>
                 </DropdownMenuTrigger>
-
                 <DropdownMenuContent align="end">
+                  <DropdownMenuItem
+                    className="side-4 mr-2"
+                    onClick={() => {
+                      revalidate.mutate({ id: videoId });
+                    }}
+                  >
+                    <RotateCcwIcon />
+                    Revalidate
+                  </DropdownMenuItem>
                   <DropdownMenuItem
                     className="side-4 mr-2"
                     onClick={() => {

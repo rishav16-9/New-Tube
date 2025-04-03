@@ -2,19 +2,19 @@ import { UseInetersectionObserver } from "@/hooks/use-intersection-observer";
 import { useEffect } from "react";
 import { Button } from "./ui/button";
 
-interface InfinteScrollProps {
+interface InfiniteScrollProps {
   isManual?: boolean;
   hasNextPage: boolean;
   isFetchingNextPage: boolean;
-  fetchingNextPage: () => void;
+  fetchNextPage: () => void;
 }
 
-export const InfinteScroll = ({
+export const InfiniteScroll = ({
   isManual = false,
   hasNextPage,
   isFetchingNextPage,
-  fetchingNextPage,
-}: InfinteScrollProps) => {
+  fetchNextPage,
+}: InfiniteScrollProps) => {
   const { isIntersecting, targetref } = UseInetersectionObserver({
     threshold: 0.5,
     rootMargin: "100px",
@@ -22,14 +22,14 @@ export const InfinteScroll = ({
 
   useEffect(() => {
     if (isIntersecting && hasNextPage && !isFetchingNextPage && !isManual) {
-      fetchingNextPage();
+      fetchNextPage();
     }
   }, [
     isIntersecting,
     hasNextPage,
     isFetchingNextPage,
     isManual,
-    fetchingNextPage,
+    fetchNextPage,
   ]);
   return (
     <div className="flex flex-col items-center p-4 gap-4">
@@ -38,7 +38,7 @@ export const InfinteScroll = ({
         <Button
           variant={"secondary"}
           onClick={() => {
-            fetchingNextPage();
+            fetchNextPage();
           }}
           disabled={isFetchingNextPage || !hasNextPage}
         >

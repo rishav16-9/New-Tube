@@ -1,6 +1,6 @@
 "use client";
 
-import { InfinteScroll } from "@/components/infinite-scroll";
+import { InfiniteScroll } from "@/components/infinite-scroll";
 import { DEFAULT_LIMIT } from "@/constants";
 import { trpc } from "@/trpc/client";
 import { Suspense } from "react";
@@ -19,7 +19,6 @@ import VideoThumbnail from "@/modules/videos/ui/component/video-thumbnail";
 import { snakeCaseTitle } from "@/lib/utils";
 import { Globe2Icon, LockIcon } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
-
 
 export const VideosSection = () => {
   return (
@@ -172,11 +171,11 @@ export const VideosSectionSuspense = () => {
         </Table>
       </div>
 
-      <InfinteScroll
+      <InfiniteScroll
         isManual
         hasNextPage={query.hasNextPage}
         isFetchingNextPage={query.isFetchingNextPage}
-        fetchingNextPage={query.fetchNextPage}
+        fetchNextPage={query.fetchNextPage}
       />
     </div>
   );
