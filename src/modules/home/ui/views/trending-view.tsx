@@ -7,7 +7,7 @@ export const TrendingView = () => {
       <div>
         <h1 className="text-2xl font-bold flex items-center gap-x-2">
           Trending
-          <FlameIcon fill="orange" className="size-6  animate-bounce" />
+          <FlameIcon fill="orange" className="size-6 animate-bounce" />
         </h1>
         <p className="text-xs text-muted-foreground ">
           Most popular videos at the moment
