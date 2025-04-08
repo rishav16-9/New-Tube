@@ -5,7 +5,7 @@ import { HydrateClient, trpc } from "@/trpc/server";
 export const dynamic = "force-dynamic";
 
 const PageHistory = () => {
-  void trpc.playlists.getMany.prefetchInfinite({ limit: DEFAULT_LIMIT });
+  void trpc.playlists.getHistory.prefetchInfinite({ limit: DEFAULT_LIMIT });
   return (
     <HydrateClient>
       <HistoryView />

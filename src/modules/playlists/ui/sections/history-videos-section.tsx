@@ -41,7 +41,7 @@ const HistoryVideosSectionSkeleton = () => {
 };
 
 const HistoryVideosSectionSuspense = () => {
-  const [videos, query] = trpc.playlists.getMany.useSuspenseInfiniteQuery(
+  const [videos, query] = trpc.playlists.getHistory.useSuspenseInfiniteQuery(
     {
       limit: DEFAULT_LIMIT,
     },
