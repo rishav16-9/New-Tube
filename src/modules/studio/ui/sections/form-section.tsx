@@ -393,6 +393,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionprops) => {
                               onClick={() => {
                                 setOpenGenerateThumbnailModal(true);
                               }}
+                              disabled
                             >
                               <SparkleIcon className="size-4 mr-1" />
                               AI-generated
