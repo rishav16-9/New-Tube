@@ -1,7 +1,7 @@
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import Image from "next/image";
 import Link from "next/link";
-import SearchInput from "./search-input";
+import { SearchInput } from "./search-input";
 import AuthButton from "@/modules/auth/ui/components/auth-button";
 
 const HomeNavbar = () => {
@@ -10,7 +10,7 @@ const HomeNavbar = () => {
       <div className="flex items-center gap-4 w-full">
         <div className="flex items-center flex-shrink-0">
           <SidebarTrigger />
-          <Link href="/">
+          <Link prefetch href="/" className="hidden md:block">
             <div className="p-4 flex items-center gap-1">
               <Image src="/logo.svg" height={32} width={32} alt="logo" />
               <p className="text-xl font-semibold tracking-tight">NewTube</p>

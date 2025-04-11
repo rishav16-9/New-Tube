@@ -4,19 +4,6 @@ import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
 import { and, eq } from "drizzle-orm";
 import { z } from "zod";
 export const videoReactionsRouter = createTRPCRouter({
-  getLike: protectedProcedure.input(z.object({
-    cursor: z.object({
-      id: z.string().uuid(),
-      updatedAt: z.date()
-    }),
-    limit: z.number().min(1).max(100)
-  })).query(async ({input, ctx}) => {
-    const {id: userId} = ctx
-    const {cursor, limit} = input
-
-    const data = await db.select().from()
-  })
-,
   like: protectedProcedure
     .input(z.object({ videoId: z.string().uuid() }))
     .mutation(async ({ input, ctx }) => {
