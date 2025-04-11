@@ -23,6 +23,8 @@ interface CommentSectionProps {
   onCancel?: () => void;
 }
 
+type CommentFormValues = Omit<z.infer<typeof commentInsertSchema>, "userId">;
+
 export const CommentForm = ({
   videoId,
   parentId,
@@ -33,7 +35,7 @@ export const CommentForm = ({
   const { user } = useUser();
   const clerk = useClerk();
   const utils = trpc.useUtils();
-  const form = useForm<z.infer<typeof commentInsertSchema>>({
+  const form = useForm<CommentFormValues>({
     resolver: zodResolver(commentInsertSchema.omit({ userId: true })),
     defaultValues: {
       parentId: parentId,
@@ -49,7 +51,7 @@ export const CommentForm = ({
         videoId: videoId,
         parentId: parentId,
       });
-      toast.success("Comment addded");
+      toast.success("Comment added");
       form.reset();
       onSuccess?.();
     },
@@ -61,7 +63,7 @@ export const CommentForm = ({
     },
   });
 
-  const handleSubmit = (values: z.infer<typeof commentInsertSchema>) => {
+  const handleSubmit = (values: CommentFormValues) => {
     create.mutate(values);
   };
 
